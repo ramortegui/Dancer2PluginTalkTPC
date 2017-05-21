@@ -23,10 +23,4 @@ hook 'plugin.cart.adjustments' => sub {
   session "ec_cart" => $ec_cart;
 };
 
-hook 'after' => sub {
-  debug(to_dumper(session('ec_cart')));
-  debug(to_dumper( scalar(@{session('ec_cart')->{cart}->{items}}) ));
-};
-
-
 true;
