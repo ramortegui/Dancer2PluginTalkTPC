@@ -27,7 +27,13 @@ hook 'plugin.cart.validate_shipping_params' => sub {
 
 hook 'plugin.cart.adjustments' => sub {
   my $ec_cart = session("ec_cart");
-  $ec_cart->{cart}->{adjustments} = [];
+  my $adjustments = [];
+  my $shipping = { description => 'Shipping', value => 10 };
+  if( $ec_cart->{cart}->{subtotal} >= 50 ){
+    $shipping->{value} = 0;
+  }
+  push @{$adjustments}, $shipping;
+  $ec_cart->{cart}->{adjustments} = $adjustments;
   session "ec_cart" => $ec_cart;
 };
 
