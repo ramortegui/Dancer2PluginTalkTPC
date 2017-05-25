@@ -17,6 +17,14 @@ hook 'plugin.cart.products' => sub {
   session "ec_cart" => $ec_cart;
 };
 
+hook 'plugin.cart.validate_shipping_params' => sub {
+  my $ec_cart = session("ec_cart");
+  if ( $ec_cart->{shipping}->{form}->{email} =~ /fake\.com$/ ){
+    push @{$ec_cart->{shipping}->{error}},"Emails from fake.com aren't valid.";
+  }
+  session "ec_cart" => $ec_cart;
+};
+
 hook 'plugin.cart.adjustments' => sub {
   my $ec_cart = session("ec_cart");
   $ec_cart->{cart}->{adjustments} = [];
