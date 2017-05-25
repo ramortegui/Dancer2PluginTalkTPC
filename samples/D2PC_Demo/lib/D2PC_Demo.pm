@@ -37,4 +37,12 @@ hook 'plugin.cart.adjustments' => sub {
   session "ec_cart" => $ec_cart;
 };
 
+hook 'plugin.cart.checkout' => sub {
+  my $ec_cart = session('ec_cart');
+  debug("Get cc authorization");
+  debug("Create Sales Order");
+  debug("Send notifications");
+  session "ec_cart" => $ec_cart;
+};
+
 true;
