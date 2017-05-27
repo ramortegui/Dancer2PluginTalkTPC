@@ -7,15 +7,16 @@ use lib "$FindBin::Bin/../lib";
 
 
 # use this block if you don't need middleware, and only have a single target Dancer app to run here
-use D2PC_SPA;
 
-D2PC_SPA->to_app;
+use D2PC_SPA;
+use D2PC_SPA::API;
 
 use Plack::Builder;
 
 builder {
     enable 'Deflater';
-    D2PC_SPA->to_app;
+    mount '/'      => D2PC_SPA->to_app; 
+    mount '/api'      => D2PC_SPA::API->to_app; 
 }
 
 
