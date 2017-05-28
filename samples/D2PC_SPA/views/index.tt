@@ -12,7 +12,7 @@
         <td> <% product.ec_sku %> </td>
         <td> <% product.ec_price %> </td>
         <td>
-          <button sku='<% product.ec_sku %>' class='btn btn-primary'>Add</button>
+          <button ec-sku='<% product.ec_sku %>' class='btn btn-primary add-item'>Add</button>
         </td>
       </tr>
     <% END %>
