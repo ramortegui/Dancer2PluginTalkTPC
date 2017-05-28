@@ -16,4 +16,13 @@ get '/products' => sub {
   products
 };
 
+get '/cart' => sub {
+  cart;
+};
+
+post '/cart/add' => sub {
+  cart_add
+  cart
+};
+
 true;
