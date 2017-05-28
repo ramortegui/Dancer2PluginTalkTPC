@@ -21,3 +21,7 @@ show_errors: 1
 
 # print the banner
 startup_info: 1
+
+plugins:
+  Cart:
+    default_routes: 0
