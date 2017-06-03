@@ -7,6 +7,10 @@
       </tr>
     </thead>
     <tbody>
+    <div id="hello-world">
+    {{ message }}
+    </div>
+
     <% FOREACH product IN product_list %>
       <tr>
         <td> <% product.ec_sku %> </td>
