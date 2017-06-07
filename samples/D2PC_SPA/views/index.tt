@@ -1,6 +1,23 @@
 
 <h1>Product list</h1>
-<div id="products">
+<div id="ec_cart">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Sku</th><th>Quantity</th><th>Price</th><th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr v-for="item in ec_cart.cart.items">
+        <td>{{ item.ec_sku }}</td>
+        <td>{{ item.ec_quantity}}</td>
+        <td>{{ item.ec_price }}</td>
+        <td>{{ item.ec_subtotal }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -8,11 +25,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="product in products">
+      <tr v-for="product in ec_cart.products">
         <td>{{ product.ec_sku }}</td>
         <td>{{ product.ec_price }}</td>
-        <td><button :ec-sku="product.ec_sku" class='btn btn-primary add-item'>Add</button></td>
+        <td><button :ec-sku="product.ec_sku" class='btn btn-primary add-item' v-on:click="cartadd(product.ec_sku)" >Add</button></td>
       </tr>
     </tbody>
   </table>
 </div>
+

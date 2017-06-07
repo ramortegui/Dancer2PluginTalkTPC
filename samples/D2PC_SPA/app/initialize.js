@@ -3,26 +3,46 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('Initialized app');
 });
 import Vue from 'vue';
-new Vue({
-  el: "#products",
+var products = new Vue({
+  el: "#ec_cart",
   data: {
-    products: [] 
+    ec_cart: {
+      cart: {
+        items: []
+      },
+      products: []
+    } 
   },
   created: function () {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
+    loadcart: function() {
+      var xhr = new XMLHttpRequest();
+      var self = this;
+      xhr.open('GET', '/api/cart');
+      xhr.onload = function () {
+        self.ec_cart= JSON.parse(xhr.responseText);
+      }
+      xhr.send();
+    },
+    cartadd: function (ec_sku) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/cart/add');
+      xhr.setRequestHeader("Content-type", "application/json");
+      var query = JSON.stringify({ ec_sku: ec_sku, ec_quantity: 1 });
+      xhr.send(query);
+      this.loadcart();
+    },
     fetchData: function () {
       var xhr = new XMLHttpRequest()
         var self = this
-        xhr.open('GET', '/api/products')
+        xhr.open('GET', '/api/cart')
         xhr.onload = function () {
-          self.products = JSON.parse(xhr.responseText)
-            console.log(self.products)
-        }
+          self.ec_cart = JSON.parse(xhr.responseText);
+        };
       xhr.send()
-    }
-  },
+    },
+  }
 });
-
 
