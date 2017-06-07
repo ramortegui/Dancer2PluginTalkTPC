@@ -6,10 +6,7 @@ import Vue from 'vue';
 new Vue({
   el: "#products",
   data: {
-    products: [{
-      ec_sku: "su01",
-      ec_price: 10
-    }] 
+    products: [] 
   },
   created: function () {
     this.fetchData()
@@ -26,11 +23,6 @@ new Vue({
       xhr.send()
     }
   },
-  components: {
-    product:{
-      template: "#template_product",
-      props: ["x"],
-      replace: false
-    }
-  }
 });
+
+

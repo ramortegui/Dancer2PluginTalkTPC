@@ -1,21 +1,5 @@
 
-  <h1>Product list</h1>
-<!--
-  <table class='table table-bordered'>
-    <tbody>
-    <% FOREACH product IN product_list %>
-      <tr>
-        <td> <% product.ec_sku %> </td>
-        <td> <% product.ec_price %> </td>
-        <td>
-          <button ec-sku='<% product.ec_sku %>' class='btn btn-primary add-item'>Add</button>
-        </td>
-      </tr>
-    <% END %>
-    </tbody>
-  </table>
--->
-
+<h1>Product list</h1>
 <div id="products">
   <table class="table table-bordered">
     <thead>
@@ -24,13 +8,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="product in products" is="product" :x="product"></tr>
+      <tr v-for="product in products">
+        <td>{{ product.ec_sku }}</td>
+        <td>{{ product.ec_price }}</td>
+        <td><button :ec-sku="product.ec_sku" class='btn btn-primary add-item'>Add</button></td>
+      </tr>
     </tbody>
   </table>
 </div>
-<template id="template_product">
-  <td> {{ x.ec_sku }} </td>
-  <td> {{ x.ec_price }} </td>
-  <td> <button ec-sku='{{ x.ec_sku }}' class='btn btn-primary add-item'>Add</button> </td>
-</template>
-
