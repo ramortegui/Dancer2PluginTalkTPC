@@ -9,6 +9,10 @@ exports.plugins = {
   babel: {presets: ['latest']}
 };
 
+exports.paths = {
+  watched: ['app','views']
+};
+
 exports.npm = {
   aliases: {
     vue: "vue/dist/vue.js" 
