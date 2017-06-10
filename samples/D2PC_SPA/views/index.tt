@@ -9,14 +9,28 @@
     </thead>
     <tbody>
      <tr v-for="item in ec_cart.cart.items">
-        <td>{{ item.ec_sku }}</td>
-        <td>{{ item.ec_quantity}}</td>
+        <td>
+          <button :ec-sku="item.ec_sku" class='btn btn-danger add-item' v-on:click="cartadd(item.ec_sku, (-1) * item.ec_quantity )" >X</button>
+          {{ item.ec_sku }}
+        </td>
+        <td>
+        <button :ec-sku="item.ec_sku" class='btn btn-primary add-item' v-on:click="cartadd(item.ec_sku, -1)" >-</button>
+        {{ item.ec_quantity}}
+        <button :ec-sku="item.ec_sku" class='btn btn-primary add-item' v-on:click="cartadd(item.ec_sku, 1)" >+</button>
+        </td>
         <td>{{ item.ec_price }}</td>
         <td>{{ item.ec_subtotal }}</td>
       </tr>
+     <tr v-for="adjustment in ec_cart.cart.adjustments">
+        <td colspan=3>{{ adjustment.description }}</td>
+        <td>{{ adjustment.value }}</td>
+      </tr>
+      <tr>
+        <td colspan=3>Total</td>
+        <td>{{ ec_cart.cart.total }}</td>
+      </tr>
     </tbody>
   </table>
-
 
   <table class="table table-bordered">
     <thead>
@@ -28,7 +42,7 @@
       <tr v-for="product in ec_cart.products">
         <td>{{ product.ec_sku }}</td>
         <td>{{ product.ec_price }}</td>
-        <td><button :ec-sku="product.ec_sku" class='btn btn-primary add-item' v-on:click="cartadd(product.ec_sku)" >Add</button></td>
+        <td><button :ec-sku="product.ec_sku" class='btn btn-primary add-item' v-on:click="cartadd(product.ec_sku, 1)" >Add</button></td>
       </tr>
     </tbody>
   </table>

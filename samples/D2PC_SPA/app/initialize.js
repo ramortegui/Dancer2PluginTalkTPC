@@ -26,11 +26,11 @@ var products = new Vue({
       }
       xhr.send();
     },
-    cartadd: function (ec_sku) {
+    cartadd: function (ec_sku, qty) {
       var xhr = new XMLHttpRequest();
       xhr.open('POST', '/api/cart/add');
       xhr.setRequestHeader("Content-type", "application/json");
-      var query = JSON.stringify({ ec_sku: ec_sku, ec_quantity: 1 });
+      var query = JSON.stringify({ ec_sku: ec_sku, ec_quantity: qty });
       xhr.send(query);
       this.loadcart();
     },
