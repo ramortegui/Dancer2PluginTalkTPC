@@ -11,11 +11,9 @@ hook 'plugin.cart.products' => sub {
   ];
   session "ec_cart" => $ec_cart;
 };
-get '/products' => sub {
-  products
-};
 
 get '/cart' => sub {
+  products;
   cart;
 };
 
