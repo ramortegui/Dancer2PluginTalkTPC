@@ -34,9 +34,21 @@
       <tr><td>Shipping <a href='shipping' class='btn btn-primary'>edit</a></td><td><% ec_cart.shipping.form.email %></td></tr>
       <tr><td>Billing <a href='billing' class='btn btn-primary'>edit</a></td><td><% ec_cart.billing.form.email %></td></tr>
   </table>
-  <form method='post' action='checkout'>
   <p>
     <a href='billing' class='btn btn-primary'>Back</a>
-    <input type='submit' value = 'Place Order' class='btn btn-primary'>
+    <form action="/cart/checkout" method="POST">
+    <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_WLyvEGvLYs8BLqODNs4dOfOa"
+    data-amount="<% ec_cart.cart.total * 100  %>"
+    data-name="order"
+    data-email="<% ec_cart.billing.form.email %>"
+    data-description="payment"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-zip-code="true">
+    </script>
+    </form>
   </p>
-  </form><% END %>
+
+<% END %>

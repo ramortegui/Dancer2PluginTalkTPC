@@ -38,8 +38,16 @@ hook 'plugin.cart.adjustments' => sub {
 };
 
 hook 'plugin.cart.checkout' => sub {
+  use Net::Stripe;
   my $ec_cart = session('ec_cart');
-  debug("Get cc authorization");
+  my $stripe     = Net::Stripe->new(api_key => config->{stripe_api} );
+  my $card_token = $ec_cart->{checkout}->{form}->{stripeToken};
+  my $charge = $stripe->post_charge(  # Net::Stripe::Charge
+    amount      => $ec_cart->{cart}->{total} * 100,
+    currency    => 'usd',
+    card        => $card_token,
+    description => 'invoice #'.session->id,
+  );
   debug("Create Sales Order");
   debug("Send notifications");
   session "ec_cart" => $ec_cart;
