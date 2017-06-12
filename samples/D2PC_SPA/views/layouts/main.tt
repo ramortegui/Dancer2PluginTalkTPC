@@ -39,22 +39,6 @@
 			<div class='container'>
 				<% content %> 
 			</div>
-
-      <script>
-        var a;
-        $("button.add-item").click(function(e){
-          var ec_sku = e.target.getAttribute('ec-sku');
-            console.log(ec_sku);
-            $.post({
-              url: '<% request.uri_base %>/api/cart/add',
-              data:  JSON.stringify({"ec_sku": ec_sku, "ec_quantity": 1 }),
-              contentType: "application/json",
-              dataType: 'json',
-              success: function(data) { console.log('data: ' + data); },
-          });
-        });
-        
-      </script>
       <script>require('initialize');</script>
 		</body>
 		</html>
