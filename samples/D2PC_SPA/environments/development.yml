@@ -25,3 +25,6 @@ startup_info: 1
 plugins:
   Cart:
     default_routes: 0
+
+stripe_key: "your key here"
+

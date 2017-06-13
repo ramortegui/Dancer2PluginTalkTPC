@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // do your setup here
   console.log('Initialized app');
 });
+
+
 import Vue from 'vue';
 var products = new Vue({
   el: "#ec_cart",
@@ -11,10 +12,11 @@ var products = new Vue({
         items: []
       },
       products: []
-    } 
+    },
+    message: []
   },
   created: function () {
-    this.fetchData();
+    this.loadcart();
   },
   methods: {
     loadcart: function() {
@@ -34,15 +36,32 @@ var products = new Vue({
       xhr.send(query);
       this.loadcart();
     },
-    fetchData: function () {
-      var xhr = new XMLHttpRequest()
-        var self = this
-        xhr.open('GET', '/api/cart')
-        xhr.onload = function () {
-          self.ec_cart = JSON.parse(xhr.responseText);
-        };
-      xhr.send()
+    purchase: function(){  
+      var handler = StripeCheckout.configure({
+      key: 'pk_test_WLyvEGvLYs8BLqODNs4dOfOa',
+      locale: 'auto',
+      token: function (token) {
+        // Use the token to create the charge with a server-side script.
+        // You can access the token ID with `token.id`
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '/api/purchase');
+          xhr.setRequestHeader("Content-type", "application/json");
+          var query = JSON.stringify({ token: token.id });
+          xhr.send(query);
+          self.message = JSON.parse(xhr.responseText);
+          this.loadcart();
+
+        }
+      });
+      let stripeAmount = this.ec_cart.cart.total * 100; // integer, in the smallest currency unit
+      let displayAmount = (stripeAmount / 100).toFixed(2);
+      let panelLabel = "Purchase"// displayAmount;
+      // Open Checkout with further options
+      handler.open({
+        name: 'D2PC_SPA',
+        description: 'Services',
+        panelLabel: panelLabel
+      });
     },
   }
 });
-
