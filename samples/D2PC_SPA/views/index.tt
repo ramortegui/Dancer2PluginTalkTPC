@@ -38,16 +38,16 @@
       </tfoot>
     </table>
   </div>
-  <h1>Product list</h1>
+  <h1>Services</h1>
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Sku</th><th>Price</th><th>Action</th>
+        <th>Type of service</th><th>Price</th><th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="product in ec_cart.products">
-        <td>{{ product.ec_sku }}</td>
+        <td>{{ product.description}}</td>
         <td>{{ product.ec_price }}</td>
         <td><button :ec-sku="product.ec_sku" class='btn btn-primary add-item' v-on:click="cartadd(product.ec_sku, 1)" >Add</button></td>
       </tr>

@@ -7,8 +7,8 @@ set serializer => "JSON";
 hook 'plugin.cart.products' => sub {
   my $ec_cart = session('ec_cart');
   $ec_cart->{products} = [
-    { ec_sku =>'SU01',ec_price => 10 },
-    { ec_sku =>'SU02',ec_price => 15 },
+    { ec_sku =>'CN01', ec_price => 50, description => "Consulting x hour"  },
+    { ec_sku =>'TR01', ec_price => 115, description => "Training" },
   ];
   session "ec_cart" => $ec_cart;
 };
@@ -49,7 +49,7 @@ post '/purchase' => sub {
   else{
     $response = { status => "fail", message => "Payment error" };
   }
-  return $response;
+  $response;
 };
 
 true;

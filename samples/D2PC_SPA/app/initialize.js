@@ -36,22 +36,21 @@ var products = new Vue({
       xhr.send(query);
       this.loadcart();
     },
-    purchase: function(){  
+    purchase: function(){ 
+      let products_instance = this; 
       var handler = StripeCheckout.configure({
       key: 'pk_test_WLyvEGvLYs8BLqODNs4dOfOa',
       locale: 'auto',
       token: function (token) {
-        // Use the token to create the charge with a server-side script.
-        // You can access the token ID with `token.id`
           var xhr = new XMLHttpRequest();
           xhr.open('POST', '/api/purchase');
           xhr.setRequestHeader("Content-type", "application/json");
           var query = JSON.stringify({ token: token.id });
           xhr.send(query);
-          self.message = JSON.parse(xhr.responseText);
-          this.loadcart();
-
-        }
+        },
+      closed: function (){
+        products_instance.loadcart();
+      }
       });
       let stripeAmount = this.ec_cart.cart.total * 100; // integer, in the smallest currency unit
       let displayAmount = (stripeAmount / 100).toFixed(2);

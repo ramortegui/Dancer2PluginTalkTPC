@@ -15,6 +15,6 @@ exports.paths = {
 
 exports.npm = {
   aliases: {
-    vue: "vue/dist/vue.js" 
+    vue: "vue/dist/vue.js",
   }
 };
