@@ -13,7 +13,7 @@ var products = new Vue({
       },
       products: []
     },
-    message: []
+    message: {} 
   },
   created: function () {
     this.loadcart();
@@ -35,6 +35,7 @@ var products = new Vue({
       var query = JSON.stringify({ ec_sku: ec_sku, ec_quantity: qty });
       xhr.send(query);
       this.loadcart();
+      this.message = {};
     },
     purchase: function(){ 
       let products_instance = this; 
@@ -47,6 +48,9 @@ var products = new Vue({
           xhr.setRequestHeader("Content-type", "application/json");
           var query = JSON.stringify({ token: token.id });
           xhr.send(query);
+          xhr.onload = function () {
+           products_instance.message = JSON.parse(xhr.responseText);
+          }
         },
       closed: function (){
         products_instance.loadcart();
