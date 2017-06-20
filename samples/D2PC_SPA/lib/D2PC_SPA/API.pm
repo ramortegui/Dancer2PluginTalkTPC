@@ -6,10 +6,10 @@ set serializer => "JSON";
 
 hook 'plugin.cart.products' => sub {
   my $ec_cart = session('ec_cart');
-  @{$ec_cart->{products}} = {
+  @{$ec_cart->{products}} = (
     { ec_sku =>'CN01', ec_price => 50, description => "Consulting"  },
     { ec_sku =>'TR01', ec_price => 115, description => "Training" },
-  };
+  );
   session "ec_cart" => $ec_cart;
 };
 
