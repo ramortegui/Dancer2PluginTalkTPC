@@ -11,8 +11,8 @@ get '/' => sub {
 hook 'plugin.cart.products' => sub {
   my $ec_cart = session('ec_cart');
   $ec_cart->{products} = [
-    { ec_sku => "book1", ec_price => 10 },
-    { ec_sku => "book2", ec_price => 15 },
+    { ec_sku => "PERLBOOK", ec_price => 10 },
+    { ec_sku => "DANCERBOOK", ec_price => 15 },
   ];
   session "ec_cart" => $ec_cart;
 };
@@ -50,6 +50,7 @@ hook 'plugin.cart.checkout' => sub {
   );
   debug("Create Sales Order");
   debug("Send notifications");
+  debug(to_dumper(session));
   session "ec_cart" => $ec_cart;
 };
 
