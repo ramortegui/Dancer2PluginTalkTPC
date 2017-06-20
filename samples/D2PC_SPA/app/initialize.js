@@ -1,7 +1,7 @@
 
 import Vue from 'vue';
 document.addEventListener('DOMContentLoaded', () => {
-  var products = new Vue({
+  let products = new Vue({
     el: "#ec_cart",
     data: {
       ec_cart: {
@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     methods: {
       loadcart: function() {
-        var xhr = new XMLHttpRequest();
-        var self = this;
+        let xhr = new XMLHttpRequest();
+        let self = this;
         xhr.open('GET', '/api/cart');
         xhr.onload = function () {
           self.ec_cart= JSON.parse(xhr.responseText);
@@ -26,24 +26,24 @@ document.addEventListener('DOMContentLoaded', () => {
         xhr.send();
       },
       cartadd: function (ec_sku, qty) {
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open('POST', '/api/cart/add');
         xhr.setRequestHeader("Content-type", "application/json");
-        var query = JSON.stringify({ ec_sku: ec_sku, ec_quantity: qty });
+        let query = JSON.stringify({ ec_sku: ec_sku, ec_quantity: qty });
         xhr.send(query);
         this.loadcart();
         this.message = {};
       },
       purchase: function(){ 
         let products_instance = this; 
-        var handler = StripeCheckout.configure({
+        let handler = StripeCheckout.configure({
         key: 'pk_test_WLyvEGvLYs8BLqODNs4dOfOa',
         locale: 'auto',
         token: function (token) {
-            var xhr = new XMLHttpRequest();
+            let xhr = new XMLHttpRequest();
             xhr.open('POST', '/api/purchase');
             xhr.setRequestHeader("Content-type", "application/json");
-            var query = JSON.stringify({ token: token.id });
+            let query = JSON.stringify({ token: token.id });
             xhr.send(query);
             xhr.onload = function () {
              products_instance.message = JSON.parse(xhr.responseText);
