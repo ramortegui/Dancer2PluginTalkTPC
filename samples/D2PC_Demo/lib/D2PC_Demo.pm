@@ -10,10 +10,10 @@ get '/' => sub {
 
 hook 'plugin.cart.products' => sub {
   my $ec_cart = session('ec_cart');
-  $ec_cart->{products} = [
+  @{$ec_cart->{products}} = (
     { ec_sku => "PERLBOOK", ec_price => 10 },
     { ec_sku => "DANCERBOOK", ec_price => 15 },
-  ];
+  );
   session "ec_cart" => $ec_cart;
 };
 
