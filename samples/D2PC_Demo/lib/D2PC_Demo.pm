@@ -54,7 +54,7 @@ hook 'plugin.cart.checkout' => sub {
   session "ec_cart" => $ec_cart;
 };
 
-hook 'after' => sub {
+hook 'after_template_render' => sub {
   debug(to_dumper(cart));
 };
 
