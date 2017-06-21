@@ -33,7 +33,7 @@ post '/cart/add' => sub {
 post '/purchase' => sub {
   my $ec_cart = cart;
   my $params = params;
-  my $stripe     = Net::Stripe->new(api_key => config->{stripe_key});
+  my $stripe     = Net::Stripe->new(api_key => config->{stripe_private_key});
   my $card_token = $params->{token};
   my $charge = $stripe->post_charge(  # Net::Stripe::Charge
     amount      => $ec_cart->{cart}->{total} * 100,
