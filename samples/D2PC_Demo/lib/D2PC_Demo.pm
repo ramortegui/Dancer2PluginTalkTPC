@@ -40,7 +40,7 @@ hook 'plugin.cart.adjustments' => sub {
 hook 'plugin.cart.checkout' => sub {
   use Net::Stripe;
   my $ec_cart = session('ec_cart');
-  my $stripe     = Net::Stripe->new(api_key => config->{stripe_api} );
+  my $stripe     = Net::Stripe->new(api_key => config->{stripe_private_key});
   my $card_token = $ec_cart->{checkout}->{form}->{stripeToken};
   my $charge = $stripe->post_charge(  # Net::Stripe::Charge
     amount      => $ec_cart->{cart}->{total} * 100,
@@ -52,6 +52,10 @@ hook 'plugin.cart.checkout' => sub {
   debug("Send notifications");
   debug(to_dumper(session));
   session "ec_cart" => $ec_cart;
+};
+
+hook 'after' => sub {
+  debug(to_dumper(cart));
 };
 
 true;
