@@ -22,4 +22,6 @@ show_errors: 1
 # print the banner
 startup_info: 1
 
-stripe_api: "your api here"
+stripe_public_key: "your_public_key_here"
+stripe_private_key: "your_private_key_here"
+                     
