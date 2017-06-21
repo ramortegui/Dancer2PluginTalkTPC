@@ -39,7 +39,7 @@
     <form action="/cart/checkout" method="POST">
     <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_WLyvEGvLYs8BLqODNs4dOfOa"
+    data-key="<% settings.stripe_public_key %>"
     data-amount="<% ec_cart.cart.total * 100  %>"
     data-name="order"
     data-email="<% ec_cart.billing.form.email %>"
