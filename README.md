@@ -17,19 +17,19 @@ Why we developed Dancer2::Plugin::Cart
 
 ## Samples
 
-###Requirements
+### Requirements
   - Dancer
   - Dancer2::Plugin::Cart
   - Stripe account (Add private/public keys on environtment/development.yml)
 
-###D2PC_Demo
-####Features
+### D2PC_Demo
+#### Features
 - Add products
 - Add ajustments
 - Checkout with Stripe
 
-###D2PC_SPA
-####Features
+### D2PC_SPA
+#### Features
 - API
 - Add products
 - Clear ajustments
