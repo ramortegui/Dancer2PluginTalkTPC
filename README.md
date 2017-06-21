@@ -18,7 +18,7 @@ Why we developed Dancer2::Plugin::Cart
 ## Samples
 
 ### Requirements
-  - Dancer
+  - Dancer2
   - Dancer2::Plugin::Cart
   - Stripe account (Add private/public keys on environtment/development.yml)
 
