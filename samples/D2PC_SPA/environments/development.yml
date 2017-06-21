@@ -26,5 +26,4 @@ plugins:
   Cart:
     default_routes: 0
 
-stripe_key: "your key here"
-
+stripe_private_key: "your_stripe_private_key_here"
