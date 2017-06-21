@@ -39,4 +39,7 @@ hook 'plugin.cart.checkout' => sub {
   debug('Send notifications');
 };
 
+hook 'after' => sub {
+  debug(to_dumper(cart));
+};
 true;
